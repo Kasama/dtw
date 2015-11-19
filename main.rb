@@ -21,10 +21,12 @@ reader = FileReader.new test_file, base_file
 total = 0
 hits = 0
 
+puts('#########################################################################################################')
 reader.test.each_with_index do |l, i|
-  index = get_dtw(l, reader.base) #todo get_dtw()
+  putc('#') if i % 10 == 0
+  index = get_dtw(l, reader.base)
   hits += 1 if l[:class] == reader.base[index][:class]
   total += 1
 end
-
-puts("eficiencia = #{hits/total}")
+puts("\nhits: #{hits}\ntotal: #{total}")
+puts("eficiencia = #{hits.to_f/total}")
