@@ -6,8 +6,9 @@ class DTW
   end
 
   def dtw_distance
-    dtw = Array(@a.length + 1) { Array(@b.length + 1) }
-
+    dtw = Array.new(@a.length + 1) { Array.new(@b.length + 1) }
+    puts("tamanho de a: #{@a.length}")
+    puts("tamanho de a: #{@b.length}")
     (1 .. @a.length).each { |t| dtw[t][0] = Float::INFINITY}
     (1 .. @b.length).each { |t| dtw[0][t] = Float::INFINITY}
     dtw[0][0] = 0
