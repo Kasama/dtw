@@ -5,9 +5,10 @@ def get_dtw(test_line, base)
   min = Float::INFINITY
   index = -1
 
+  p = 0
   base.each_with_index do |l, i|
     dtw = DTW.new(test_line[:values], l[:values])
-    if (d = dtw.dtw_distance) < min
+    if (d = dtw.dtw_distance(p)) < min # p is the percentage
       min = d
       index = i
     end

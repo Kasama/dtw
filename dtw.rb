@@ -5,14 +5,19 @@ class DTW
     @b = b
   end
 
-  def dtw_distance
-    dtw = Array.new(@a.length + 1) { Array.new(@b.length + 1) }
-    (1 .. @a.length).each { |t| dtw[t][0] = Float::INFINITY}
-    (1 .. @b.length).each { |t| dtw[0][t] = Float::INFINITY}
+  def dtw_distance(p)
+
+    p = p/100 if p > 1
+
+    w = p*(@b.length)
+
+    w = max(w, abs(@a.length - @b.length))
+
+    dtw = Array.new(@a.length + 1) { Array.new(@b.length + 1, Float::INFINITY) }
     dtw[0][0] = 0
 
     (1 .. @a.length).each do |i|
-      (1 .. @b.length).each do |j|
+      (max(1, i-w) .. min(@b.length, i+w, Float::INFINITY)).each do |j|
         cost = d(a[i-1], b[j-1])
         dtw[i][j] = cost + min(dtw[i-1][j], dtw[i][j-1], dtw[i-1][j-1])
       end
@@ -30,5 +35,18 @@ class DTW
     ret = b if(b < a and b < c)
     ret = c if(c < b and c < a)
     ret
+  end
+
+  def max(a, b)
+    return a if a > b
+    b
+  end
+
+  def abs(a)
+    if a > 0
+      a
+    else
+      -a
+    end
   end
 end
