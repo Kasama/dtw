@@ -21,6 +21,9 @@ class FileReader
     test_file.each_line do |l|
       cl, values = l.to_s.match(/(\d+) (.*$)/i).captures
       values = values.split(' ')
+      values.each_with_index do |v, j|
+        values[j] = v.to_f
+      end
       @test[i] = {}
       @test[i][:class] = cl
       @test[i][:values] = values
@@ -31,6 +34,9 @@ class FileReader
     base_file.each_line do |l|
       cl, values = l.to_s.match(/(\d+) (.*$)/i).captures
       values = values.split(' ')
+      values.each_with_index do |v, j|
+        values[j] = v.to_f
+      end
       @base[i] = {}
       @base[i][:class] = cl
       @base[i][:values] = values
