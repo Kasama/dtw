@@ -15,8 +15,8 @@ def get_dtw(test_line, base, p = 1)
   index
 end
 
-test_file = './teste3D.txt'
-base_file = './treino3D.txt'
+test_file = './teste.txt'
+base_file = './treino.txt'
 reader = FileReader.new test_file, base_file
 
 percentages = [0, 0.05, 0.1, 0.2, 0.5, 1]
@@ -26,14 +26,17 @@ percentages.each do |p|
   hits = 0
 
   puts "Running for #{p*100}%"
-  puts '#########################################################################################################'
+  puts '################################################################################################'
+  time = Time.now
   reader.test.each_with_index do |l, i|
     putc '#' if i % 10 == 0
     index = get_dtw(l, reader.base, p)
     hits += 1 if l[:class] == reader.base[index][:class]
     total += 1
   end
-  puts "\nPercetage: #{p*100}%"
+  time = Time.now - time
+  puts "\nPercentage: #{p*100}%"
   puts "hits: #{hits}\ntotal: #{total}"
-  puts "eficiencia = #{hits.to_f/total}"
+  puts "efficiency = #{hits.to_f/total}"
+  puts "time = #{time}ms"
 end
