@@ -19,7 +19,7 @@ class DTW
 
     (1 .. @test.length).each do |i|
       (max(1, i-w) .. min2(@base.length, i+w)).each do |j|
-        cost = distance(a[i-1], b[j-1])
+        cost = distance(@test[i-1], @base[j-1])
         dtw[i][j] = cost + min(dtw[i-1][j], dtw[i][j-1], dtw[i-1][j-1])
       end
     end

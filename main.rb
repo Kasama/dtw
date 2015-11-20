@@ -15,8 +15,8 @@ def get_dtw(test_line, base, p = 1)
   index
 end
 
-test_file = './teste.txt'
-base_file = './treino.txt'
+test_file = './teste3D.txt'
+base_file = './treino3D.txt'
 reader = FileReader.new test_file, base_file
 
 percentages = [0, 0.05, 0.1, 0.2, 0.5, 1]
