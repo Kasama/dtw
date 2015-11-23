@@ -6,7 +6,7 @@ The objective of this project is to implement a algorithm to classify temporal s
 How to run
 ----------
 
-To run this program you must have [Ruby](1) installed.
+To run this program you must have [Ruby][1] installed.
 
 Open a terminal and run the following commands to clone the repository locally:
 ```bash
